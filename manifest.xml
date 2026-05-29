@@ -6,28 +6,16 @@
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
 
-  <!-- UNIQUE ID — keep this, do not regenerate -->
   <Id>a1b2c3d4-e5f6-7890-abcd-ef1234567890</Id>
   <Version>1.0.0.2</Version>
   <ProviderName>Mohammad Shahidul Islam</ProviderName>
-
-  <!-- AppSource requires en-US as default locale -->
   <DefaultLocale>en-US</DefaultLocale>
-
-  <!-- DisplayName MUST NOT be blank -->
   <DisplayName DefaultValue="Sothik - Bangla Grammar Checker"/>
-
-  <!-- English description required; Bengali can be added via localization -->
   <Description DefaultValue="Sothik checks Bengali spelling and grammar directly inside Microsoft Word."/>
-
-  <!-- Icons hosted on YOUR Vercel domain -->
   <IconUrl DefaultValue="https://sothik-word-addin.vercel.app/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://sothik-word-addin.vercel.app/assets/icon-64.png"/>
-
-  <!-- Must point to YOUR OWN support page, not a third-party government site -->
   <SupportUrl DefaultValue="https://sothik-word-addin.vercel.app/support.html"/>
 
-  <!-- Only include domains YOU own and that your add-in actually calls -->
   <AppDomains>
     <AppDomain>sothik-word-addin.vercel.app</AppDomain>
   </AppDomains>
@@ -40,7 +28,6 @@
     <SourceLocation DefaultValue="https://sothik-word-addin.vercel.app/taskpane.html"/>
   </DefaultSettings>
 
-  <!-- ReadWriteDocument is fine if you need it; use ReadDocument if you only read -->
   <Permissions>ReadWriteDocument</Permissions>
 
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
@@ -51,7 +38,6 @@
           <GetStarted>
             <Title resid="GetStarted.Title"/>
             <Description resid="GetStarted.Description"/>
-            <!-- LearnMoreUrl must be YOUR page, not a third-party site -->
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
           </GetStarted>
 
@@ -59,8 +45,8 @@
 
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <CustomTab id="SothikTab">
-              <Label resid="SothikTab.Label"/>
 
+             
               <Group id="SothikGroup.Main">
                 <Label resid="SothikGroup.Main.Label"/>
                 <Icon>
@@ -87,6 +73,10 @@
                 </Control>
 
               </Group>
+
+              
+              <Label resid="SothikTab.Label"/>
+
             </CustomTab>
           </ExtensionPoint>
 
@@ -101,7 +91,6 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://sothik-word-addin.vercel.app/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <!-- All URLs must be YOUR domain -->
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://sothik-word-addin.vercel.app/index.html"/>
         <bt:Url id="Commands.Url"            DefaultValue="https://sothik-word-addin.vercel.app/commands.html"/>
         <bt:Url id="Taskpane.Url"            DefaultValue="https://sothik-word-addin.vercel.app/taskpane.html"/>
