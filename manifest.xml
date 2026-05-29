@@ -6,18 +6,30 @@
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
 
+  <!-- UNIQUE ID — keep this, do not regenerate -->
   <Id>a1b2c3d4-e5f6-7890-abcd-ef1234567890</Id>
   <Version>1.0.0.2</Version>
   <ProviderName>Mohammad Shahidul Islam</ProviderName>
-  <DefaultLocale>bn-BD</DefaultLocale>
-  <DisplayName DefaultValue=" "/>
-  <Description DefaultValue="বাংলা ব্যাকরণ পরীক্ষক"/>
-  <IconUrl DefaultValue="https://my-word-addin.vercel.app/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://my-word-addin.vercel.app/assets/icon-128.png"/>
-  <SupportUrl DefaultValue="https://getway.bangla.gov.bd/"/>
 
+  <!-- AppSource requires en-US as default locale -->
+  <DefaultLocale>en-US</DefaultLocale>
+
+  <!-- DisplayName MUST NOT be blank -->
+  <DisplayName DefaultValue="Sothik - Bangla Grammar Checker"/>
+
+  <!-- English description required; Bengali can be added via localization -->
+  <Description DefaultValue="Sothik checks Bengali spelling and grammar directly inside Microsoft Word."/>
+
+  <!-- Icons hosted on YOUR Vercel domain -->
+  <IconUrl DefaultValue="https://sothik-word-addin.vercel.app/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://sothik-word-addin.vercel.app/assets/icon-64.png"/>
+
+  <!-- Must point to YOUR OWN support page, not a third-party government site -->
+  <SupportUrl DefaultValue="https://sothik-word-addin.vercel.app/support.html"/>
+
+  <!-- Only include domains YOU own and that your add-in actually calls -->
   <AppDomains>
-    <AppDomain>getway.bangla.gov.bd</AppDomain>
+    <AppDomain>sothik-word-addin.vercel.app</AppDomain>
   </AppDomains>
 
   <Hosts>
@@ -25,28 +37,30 @@
   </Hosts>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://my-word-addin.vercel.app/taskpane.html"/>
+    <SourceLocation DefaultValue="https://sothik-word-addin.vercel.app/taskpane.html"/>
   </DefaultSettings>
 
+  <!-- ReadWriteDocument is fine if you need it; use ReadDocument if you only read -->
   <Permissions>ReadWriteDocument</Permissions>
 
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Hosts>
       <Host xsi:type="Document">
         <DesktopFormFactor>
+
           <GetStarted>
             <Title resid="GetStarted.Title"/>
             <Description resid="GetStarted.Description"/>
+            <!-- LearnMoreUrl must be YOUR page, not a third-party site -->
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
           </GetStarted>
-          <FunctionFile resid="Commands.Url"/>
-          <ExtensionPoint xsi:type="PrimaryCommandSurface">
 
-            <!-- Add a brand-new TAB named সঠিক in the ribbon -->
+          <FunctionFile resid="Commands.Url"/>
+
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <CustomTab id="SothikTab">
               <Label resid="SothikTab.Label"/>
 
-              <!-- Group 1: Main action -->
               <Group id="SothikGroup.Main">
                 <Label resid="SothikGroup.Main.Label"/>
                 <Icon>
@@ -55,7 +69,6 @@
                   <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
 
-                <!-- Large "বানান পরীক্ষা করুন" button -->
                 <Control xsi:type="Button" id="OpenPaneButton">
                   <Label resid="OpenPane.Label"/>
                   <Supertip>
@@ -75,33 +88,35 @@
 
               </Group>
             </CustomTab>
-
           </ExtensionPoint>
+
         </DesktopFormFactor>
       </Host>
     </Hosts>
 
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://my-word-addin.vercel.app/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="https://my-word-addin.vercel.app/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="https://my-word-addin.vercel.app/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://sothik-word-addin.vercel.app/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://sothik-word-addin.vercel.app/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://sothik-word-addin.vercel.app/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://getway.bangla.gov.bd/"/>
-        <bt:Url id="Commands.Url"            DefaultValue="https://my-word-addin.vercel.app/commands.html"/>
-        <bt:Url id="Taskpane.Url"            DefaultValue="https://my-word-addin.vercel.app/taskpane.html"/>
+        <!-- All URLs must be YOUR domain -->
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://sothik-word-addin.vercel.app/index.html"/>
+        <bt:Url id="Commands.Url"            DefaultValue="https://sothik-word-addin.vercel.app/commands.html"/>
+        <bt:Url id="Taskpane.Url"            DefaultValue="https://sothik-word-addin.vercel.app/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title"        DefaultValue="সঠিক ব্যাকরণ পরীক্ষক"/>
-        <bt:String id="SothikTab.Label"          DefaultValue="সঠিক"/>
-        <bt:String id="SothikGroup.Main.Label"   DefaultValue="সঠিক"/>
-        <bt:String id="OpenPane.Label"           DefaultValue="বানান যাচাই করুন"/>
+        <bt:String id="GetStarted.Title"       DefaultValue="Sothik - Bangla Grammar Checker"/>
+        <bt:String id="SothikTab.Label"         DefaultValue="সঠিক"/>
+        <bt:String id="SothikGroup.Main.Label"  DefaultValue="সঠিক"/>
+        <bt:String id="OpenPane.Label"          DefaultValue="বানান যাচাই করুন"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description"  DefaultValue="বাংলা ব্যাকরণ যাচাই করুন"/>
-        <bt:String id="OpenPane.Tooltip"        DefaultValue="সঠিক ব্যাকরণ পরীক্ষক প্যানেল খুলুন"/>
+        <bt:String id="GetStarted.Description" DefaultValue="Check Bengali spelling and grammar inside Word using Sothik."/>
+        <bt:String id="OpenPane.Tooltip"       DefaultValue="Open the Sothik Bengali grammar checker panel"/>
       </bt:LongStrings>
     </Resources>
+
   </VersionOverrides>
 </OfficeApp>
