@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — Sothik Bangla Spell Checker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #1a6b3a;
+      --green2: #24924f;
+      --gold:   #c8922a;
+      --cream:  #fdf8f0;
+      --dark:   #0f1f15;
+      --text:   #2a3d2f;
+      --muted:  #6b7e70;
+      --border: #d4e8da;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    nav {
+      background: var(--dark);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+    nav a.back { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.88rem; }
+    nav a.back:hover { color: #6ee09a; }
+
+    .page-hero {
+      background: var(--dark);
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-hero p { color: rgba(255,255,255,0.45); font-size: 0.88rem; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* SUMMARY BOX */
+    .summary-box {
+      background: linear-gradient(135deg, #e8f5ee, #d0eedd);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--green2);
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .summary-box h2 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .summary-box ul { list-style: none; }
+
+    .summary-box ul li {
+      padding: 0.35rem 0;
+      font-size: 0.95rem;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .summary-box ul li::before {
+      content: "✓";
+      color: var(--green2);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* POLICY SECTIONS */
+    .policy-section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-section:last-of-type { border-bottom: none; }
+
+    .section-number {
+      display: inline-block;
+      background: var(--green2);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .policy-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .policy-section p {
+      font-size: 0.97rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .policy-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .policy-section ul li {
+      padding-left: 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+      font-size: 0.97rem;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    .policy-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--green2);
+      font-weight: 700;
+    }
+
+    .highlight-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* CONTACT */
+    .contact-end {
+      background: var(--dark);
+      border-radius: 14px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-end h2 {
+      grid-column: 1/-1;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .citem {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+    }
+
+    .citem span {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.3rem;
+    }
+
+    .citem a, .citem p {
+      color: #6ee09a;
+      text-decoration: none;
+      font-size: 0.97rem;
+      font-weight: 600;
+    }
+
+    .citem a:hover { text-decoration: underline; }
+
+    footer {
+      background: #0a1510;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p { color: rgba(255,255,255,0.35); font-size: 0.82rem; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 0.8rem; }
+    footer a:hover { color: #6ee09a; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/index.html">So<span>thik</span></a>
+    <a class="back" href="/index.html">← Back to Home</a>
+  </nav>
+
+  <div class="page-hero">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: May 1, 2026</p>
+  </div>
+
+  <main>
+
+    <!-- PLAIN LANGUAGE SUMMARY -->
+    <div class="summary-box">
+      <h2>Plain Language Summary</h2>
+      <ul>
+        <li>Sothik does not send your document content to any server</li>
+        <li>No personal data is collected, stored, or processed</li>
+        <li>No information is shared with any third party</li>
+        <li>The add-in is completely free and contains no advertisements</li>
+      </ul>
+    </div>
+
+    <!-- 1 -->
+    <div class="policy-section">
+      <span class="section-number">Section 1</span>
+      <h2>Introduction</h2>
+      <p>This Privacy Policy applies to the "Sothik" (সঠিক) Bangla Spell and Grammar Checker, a Microsoft Word add-in developed and maintained by Mohammad Shahidul Islam ("we," "our," or "the Developer").</p>
+      <p>This policy explains what information we collect (or do not collect), how it is used, and what rights you have as a user of this add-in.</p>
+      <p>By installing or using the Sothik add-in, you agree to the terms described in this Privacy Policy.</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="policy-section">
+      <span class="section-number">Section 2</span>
+      <h2>Information We Do Not Collect</h2>
+      <p>The Sothik add-in does <strong>not</strong> collect, store, transmit, or process any of the following:</p>
+      <ul>
+        <li>The text or contents of your Word documents</li>
+        <li>Your name, email address, phone number, or any other personal identifiers</li>
+        <li>Your Microsoft account credentials or profile information</li>
+        <li>Your device information, operating system, or hardware details</li>
+        <li>Your IP address or geographic location</li>
+        <li>Usage analytics, behavioral data, or interaction history</li>
+        <li>Any cookies, tracking identifiers, or session tokens</li>
+      </ul>
+    </div>
+
+    <!-- 3 -->
+    <div class="policy-section">
+      <span class="section-number">Section 3</span>
+      <h2>How the Add-in Works</h2>
+      <p>Sothik operates entirely within your Microsoft Word application. Its processing model is designed to be private by default:</p>
+      <div class="highlight-box">
+        The text in your document is processed within your Word session on your own device. Spell-checking and grammar analysis results are displayed directly in the task pane. No document content is transmitted to any external server at any point.
+      </div>
+      <p>The add-in only modifies your document when you explicitly choose to apply a correction. No automated or background changes are made to your document without your action.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="policy-section">
+      <span class="section-number">Section 4</span>
+      <h2>Third-Party Sharing</h2>
+      <p>We do not sell, share, rent, trade, or otherwise disclose any personal information or document content to any third party, including but not limited to advertisers, analytics providers, data brokers, or government agencies (except where required by applicable law).</p>
+      <p>The add-in is distributed through Microsoft AppSource. Microsoft's own Privacy Policy governs how Microsoft handles data related to its platform and services, and is separate from this policy.</p>
+    </div>
+
+    <!-- 5 -->
+    <div class="policy-section">
+      <span class="section-number">Section 5</span>
+      <h2>Cookies and Tracking Technologies</h2>
+      <p>The Sothik add-in does not use cookies, web beacons, tracking pixels, fingerprinting, or any similar tracking technologies. No persistent identifiers are stored on your device by this add-in.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="policy-section">
+      <span class="section-number">Section 6</span>
+      <h2>Data Security</h2>
+      <p>Because Sothik does not collect or transmit any personal data or document content, there is no user data stored on our servers to secure or protect. The add-in files are served over HTTPS to ensure secure delivery to your browser or Word application.</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="policy-section">
+      <span class="section-number">Section 7</span>
+      <h2>Children's Privacy</h2>
+      <p>The Sothik add-in does not knowingly collect personal information from children under the age of 13, or under the age defined as a minor in the user's jurisdiction. Since no personal data is collected from any user, this add-in is safe to use for all age groups.</p>
+    </div>
+
+    <!-- 8 -->
+    <div class="policy-section">
+      <span class="section-number">Section 8</span>
+      <h2>Your Rights</h2>
+      <p>Since Sothik does not collect any personal data, there is no stored data to access, correct, or delete. However, at any time you may:</p>
+      <ul>
+        <li>Uninstall the add-in from Word via Insert → My Add-ins → Sothik → Remove</li>
+        <li>Revoke the add-in's document access permissions through Word's settings</li>
+        <li>Contact us with any questions or concerns about this Privacy Policy</li>
+      </ul>
+    </div>
+
+    <!-- 9 -->
+    <div class="policy-section">
+      <span class="section-number">Section 9</span>
+      <h2>Changes to This Policy</h2>
+      <p>If we make any material changes to this Privacy Policy, we will update the "Last updated" date at the top of this page and notify users through Microsoft AppSource where reasonably possible. Continued use of the add-in after changes are posted constitutes your acceptance of the updated policy.</p>
+      <p>We encourage you to review this page periodically to stay informed about how we protect your privacy.</p>
+    </div>
+
+    <!-- 10 -->
+    <div class="policy-section">
+      <span class="section-number">Section 10</span>
+      <h2>Governing Law</h2>
+      <p>This Privacy Policy is governed by and construed in accordance with the laws of the People's Republic of Bangladesh, including applicable provisions of the Information and Communication Technology Act and the Digital Security Act. Any disputes arising from this policy shall be subject to the jurisdiction of the courts of Bangladesh.</p>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-end">
+      <h2>Privacy Enquiries</h2>
+      <div class="citem">
+        <span>Developer</span>
+        <p>Mohammad Shahidul Islam</p>
+      </div>
+      <div class="citem">
+        <span>Email</span>
+        <a href="mailto:shahid.eblict@gmail.com">shahid.eblict@gmail.com</a>
+      </div>
+      <div class="citem">
+        <span>Phone</span>
+        <a href="tel:+8801711239529">+880 1711-239529</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>
+      <a href="/index.html">Home</a>
+      <a href="/support.html">Support</a>
+    </p>
+    <p style="margin-top:0.8rem;">© 2026 Sothik — Mohammad Shahidul Islam. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

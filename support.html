@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support — Sothik Bangla Spell Checker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #1a6b3a;
+      --green2: #24924f;
+      --gold:   #c8922a;
+      --cream:  #fdf8f0;
+      --dark:   #0f1f15;
+      --text:   #2a3d2f;
+      --muted:  #6b7e70;
+      --border: #d4e8da;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    nav {
+      background: var(--dark);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+    nav a.back { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.88rem; }
+    nav a.back:hover { color: #6ee09a; }
+
+    .page-hero {
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-hero p { color: rgba(255,255,255,0.75); font-size: 1rem; }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* CONTACT CARDS */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .contact-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #e8f5ee, #d0eedd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .contact-card h3 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      font-weight: 500;
+    }
+
+    .contact-card a, .contact-card p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* FAQ */
+    .faq-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.5rem;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .faq-q:hover { background: #f5faf6; }
+
+    .faq-q .arrow {
+      color: var(--green2);
+      font-size: 1.2rem;
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+
+    .faq-q[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      padding: 1rem 1.5rem 1.2rem;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.75;
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-a.open { display: block; }
+
+    /* INSTALL STEPS */
+    .install-block {
+      background: var(--dark);
+      border-radius: 16px;
+      padding: 2.2rem;
+      margin-top: 3rem;
+    }
+
+    .install-block h2 {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .install-steps { list-style: none; counter-reset: istep; }
+
+    .install-steps li {
+      counter-increment: istep;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .install-steps li::before {
+      content: counter(istep);
+      min-width: 30px;
+      height: 30px;
+      background: var(--green2);
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    footer {
+      background: #0a1510;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p { color: rgba(255,255,255,0.35); font-size: 0.82rem; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 0.8rem; }
+    footer a:hover { color: #6ee09a; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/index.html">So<span>thik</span></a>
+    <a class="back" href="/index.html">← Back to Home</a>
+  </nav>
+
+  <div class="page-hero">
+    <h1>Support Center</h1>
+    <p>Having trouble with Sothik? We're here to help.</p>
+  </div>
+
+  <main>
+
+    <!-- CONTACT -->
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h3>Phone Support</h3>
+          <a href="tel:+8801711239529">+880 1711-239529</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h3>Email Support</h3>
+          <a href="mailto:shahid.eblict@gmail.com">shahid.eblict@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <h3>Support Hours</h3>
+          <p>Sun–Thu, 9:00 AM – 5:00 PM (BST)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggle(this)">
+        <span>How do I install the Sothik add-in?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        Open Microsoft Word → click the <strong>Insert</strong> tab → click <strong>Get Add-ins</strong> → search for <strong>"Sothik"</strong> → click <strong>Add</strong>. Once installed, a new "Sothik" tab will appear in the Word ribbon.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggle(this)">
+        <span>Is Sothik free to use?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        Yes. Sothik is completely free to download and use from Microsoft AppSource. There are no hidden charges, subscriptions, or premium tiers.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggle(this)">
+        <span>Which versions of Microsoft Word are supported?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        Sothik works with <strong>Microsoft 365</strong> (Word for Windows, Word for Mac, and Word on the web). It also has limited support for Word 2016 and later standalone versions.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggle(this)">
+        <span>How do I fix a spelling error after checking?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        After running a check, the task pane on the right will list all detected errors. Under each error, suggested corrections are shown. Click the suggestion you prefer and the word in your document will be replaced automatically.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggle(this)">
+        <span>Is my document content safe and private?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        Absolutely. Sothik does not send your document content to any external server, and nothing is stored or logged. All processing happens locally within Microsoft Word. See our <a href="/privacy.html" style="color:var(--green);">Privacy Policy</a> for full details.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggle(this)">
+        <span>The add-in is not working. What should I do?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        First, close and reopen Microsoft Word. If the problem persists, uninstall the add-in from <strong>Insert → My Add-ins → Sothik → Remove</strong>, then reinstall it from AppSource. If the issue continues, please contact us by phone or email.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggle(this)">
+        <span>Does Sothik work offline?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        An internet connection is required to load the add-in initially, as it is a web-based add-in hosted on a secure server. Once loaded, the spell-checking functionality operates within your Word session.
+      </div>
+    </div>
+
+    <!-- INSTALL STEPS -->
+    <div class="install-block">
+      <h2>Step-by-Step Installation Guide</h2>
+      <ol class="install-steps">
+        <li>Open Microsoft Word (Microsoft 365 or Word 2016 and above)</li>
+        <li>Click the <strong>Insert</strong> tab in the top ribbon</li>
+        <li>Click <strong>Get Add-ins</strong> or <strong>Office Add-ins</strong></li>
+        <li>In the search box, type <strong>"Sothik"</strong> and press Enter</li>
+        <li>Find the Sothik add-in in the results and click <strong>Add</strong></li>
+        <li>A new <strong>"Sothik"</strong> tab will appear in your Word ribbon — installation complete</li>
+      </ol>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>
+      <a href="/index.html">Home</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </p>
+    <p style="margin-top:0.8rem;">© 2026 Sothik — Mohammad Shahidul Islam</p>
+  </footer>
+
+  <script>
+    function toggle(btn) {
+      const ans = btn.nextElementSibling;
+      const open = ans.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    }
+  </script>
+
+</body>
+</html>

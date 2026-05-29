@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sothik — Bangla Spell & Grammar Checker for Microsoft Word</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #1a6b3a;
+      --green2: #24924f;
+      --gold:   #c8922a;
+      --cream:  #fdf8f0;
+      --dark:   #0f1f15;
+      --text:   #2a3d2f;
+      --muted:  #6b7e70;
+      --border: #d4e8da;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(36,146,79,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(200,146,42,0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(36,146,79,0.15);
+      border: 1px solid rgba(36,146,79,0.4);
+      color: #6ee09a;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .hero-logo {
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: clamp(5rem, 15vw, 10rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-logo span { color: var(--gold); }
+
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--green2);
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.9rem 2.2rem;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover { background: #1a6b3a; transform: translateY(-2px); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.25);
+      font-size: 0.78rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: bounce 2s infinite;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* FEATURES */
+    .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title span { color: var(--green); }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 3.5rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 8px 32px rgba(26,107,58,0.10);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #e8f5ee, #d0eedd);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* HOW IT WORKS */
+    .how-section {
+      background: var(--dark);
+      padding: 5rem 2rem;
+    }
+
+    .how-inner { max-width: 900px; margin: 0 auto; }
+
+    .how-section .section-title  { color: #fff; }
+    .how-section .section-subtitle { color: rgba(255,255,255,0.45); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      counter-reset: steps;
+    }
+
+    .step { text-align: center; counter-increment: steps; }
+
+    .step::before {
+      content: counter(steps);
+      display: block;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--green2);
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 52px;
+      margin: 0 auto 1.2rem;
+    }
+
+    .step h4 { color: #fff; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .step p  { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.6; }
+
+    /* INSTALL STRIP */
+    .install-strip {
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .install-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .install-strip p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1rem; }
+
+    .install-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #fff;
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 8px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .install-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    /* FOOTER */
+    footer {
+      background: #0a1510;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    footer .foot-logo {
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+
+    footer p { color: rgba(255,255,255,0.35); font-size: 0.85rem; margin-bottom: 0.3rem; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: #6ee09a; }
+
+    .foot-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .foot-links a { font-size: 0.88rem; }
+
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge">Microsoft Word Add-in · Bangladesh</div>
+    <div class="hero-logo">So<span>thik</span></div>
+    <p class="hero-tagline">Bangla Spell &amp; Grammar Checker</p>
+    <p class="hero-sub">Write flawless Bangla in Microsoft Word — powered by সঠিক</p>
+    <a class="hero-cta" href="https://appsource.microsoft.com" target="_blank">
+      ⬇ &nbsp;Get it on Microsoft AppSource
+    </a>
+    <div class="scroll-hint">▾ &nbsp;Scroll to learn more</div>
+  </section>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <h2 class="section-title">Why use <span>Sothik</span>?</h2>
+    <p class="section-subtitle">Full Bangla language support built right inside Microsoft Word — no external tools needed.</p>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <h3>Instant Spell Check</h3>
+        <p>Every word in your document is checked automatically. Misspelled Bangla words are identified instantly.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>Grammar Analysis</h3>
+        <p>Detects grammatical errors in sentence structure and provides accurate correction suggestions.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h3>Smart Suggestions</h3>
+        <p>For every misspelled word, Sothik shows a ranked list of correct alternatives to choose from.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🖱️</div>
+        <h3>One-Click Correction</h3>
+        <p>Select the correct suggestion and your document updates instantly — no copy-pasting required.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Completely Private</h3>
+        <p>Your document content is never sent to any server or stored anywhere. Everything stays on your device.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🇧🇩</div>
+        <h3>Built for Bangladesh</h3>
+        <p>Designed to follow the standard Bangla spelling rules used in Bangladesh — accurate and contextual.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-section">
+    <div class="how-inner">
+      <h2 class="section-title">How does it work?</h2>
+      <p class="section-subtitle">Get started in three simple steps</p>
+      <div class="steps">
+        <div class="step">
+          <h4>Install</h4>
+          <p>Download "Sothik" from Microsoft AppSource and install it in Word in one click.</p>
+        </div>
+        <div class="step">
+          <h4>Open the Panel</h4>
+          <p>Click the "Sothik" tab in the Word ribbon, then press "Check Spelling" to open the task pane.</p>
+        </div>
+        <div class="step">
+          <h4>Review &amp; Fix</h4>
+          <p>Browse the detected errors, pick a suggestion for each one, and apply the correction.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTALL STRIP -->
+  <div class="install-strip">
+    <h2>Start writing better Bangla today</h2>
+    <p>Free to download on Microsoft AppSource</p>
+    <a class="install-btn" href="https://appsource.microsoft.com" target="_blank">
+      🛒 &nbsp;Search "Sothik" on AppSource
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-logo">Sothik</div>
+    <p>Bangla Spell &amp; Grammar Checker for Microsoft Word</p>
+    <div class="foot-links">
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </div>
+    <p>Developed by Mohammad Shahidul Islam</p>
+    <p style="margin-top:0.8rem; font-size:0.78rem;">© 2025 Sothik. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
